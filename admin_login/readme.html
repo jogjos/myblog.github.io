@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Simple Admin Login PHP Script - Readme</title>
+<meta name="description" content="Simple Admin Login script with php, without database. Multiple admin accounts and rank system." />
+<style>
+body, html {background-color:#fdfdfd;margin:1px 4px;padding:0;font-size:1em;font-family:"Calibri",sans-serif;}
+.sb {font-weight:700;}
+.su {text-decoration:underline;}
+.sbi {font-weight:700;font-style:oblique;}
+.si {font-style:oblique;}
+.cb {color:#0000eb;}
+.cr {color:#eb0000;}
+h1 {text-align:center;}
+h1, h3, h4 {
+ margin:1em;
+ text-decoration:underline;
+}
+pre {width:99%;max-height:550px;background:#fefebb;font-size:15px; font-weight:bold; color:blue;padding:3px 4px;overflow:auto;}
+blockquote {background:#ebebfe;padding:2px 3px;font-size:17px;}
+#mp {
+ display:block;
+ margin:1.5em auto;
+ text-align:center;
+}
+</style>
+</head>
+<body>
+<h1>Simple Admin Login PHP Script</h1>
+This is an Admin Login script made with PHP.<br>
+It is useful if you want to implement in your site a simple admin login system, without database.<br>
+The users are added manually by the Administrator, in the php code of this script. You can add multiple admin-user accounts with a Rank number to each one, so, then you can display content for loged Admin in your site according to its rank.
+<h3>Usage</h3>
+<ol>
+ <li>Open the "<span class="sb">admin.php</span>" file, and set Admin accounts in the <span class="sb">$admins</span> array; then copy the file on your server.</li>
+<li>To login as Admin, just access the "<span class="sbi">admin.php</span>" page in your server.</li>
+<li>The script stores the Username and Rank of the logged Admin in the sessions: <span class="sbi">$_SESSION['adminlog']</span> and <span class="sbi">$_SESSION['adminrank']</span>.<br>
+To display different content in your site according to the logged Admin and its Rank, check and use those session variables, like in this example (see also the "<span class="sbi">test.php</span>" file).
+<pre>
+&lt;?php
+//Start session
+session_start();
+
+//check if admin loged
+if(isset($_SESSION['adminlog']) &amp;&amp; isset($_SESSION['adminrank'])){
+  //set content according to admin rank
+  if($_SESSION['adminrank'] &gt;=9){
+    $content ='Content for Admin with Rank 9+';
+  }
+  else if($_SESSION['adminrank'] &gt;=5){
+    $content ='Content for Admin with Rank 5+';
+  }
+  else {
+    $content ='Content for logged Admin with rank lower than 5';
+  }
+}
+else {
+  $content ='Content for no logged Admin.';
+}
+
+echo $content;
+</pre></li>
+<li>To Log-Out, just access a link that opens this URL: "<span class="sb">admin.php?lgo=logout</span>".
+<pre>
+&lt;a href=&quot;admin.php?lgo=logout&quot; title=&quot;Log-Out&quot;&gt;Log-Out&lt;/a&gt;
+</pre></li>
+</ol><br><hr><br>
+ &bull; Scipt Page: <a href="http://coursesweb.net/php-mysql/simple-admin-login-script-php" title="Simple Admin Login PHP Script">http://coursesweb.net/php-mysql/simple-admin-login-script-php</a><br><br><br>
+ - <span class="sbi">This script is Free, and Open Source. You can modify, publish and use it freely.<br>
+ <em id="mp">- Have a Happy Life with Everyone -</em>
+</body>
+</html>
